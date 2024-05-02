@@ -7,12 +7,11 @@ interface BoxStep1Props{
     title: string;
     children: React.ReactNode
     onClick: () => void
+    selected: string | null
 }
 
-export default function BoxStep1({title, children, onClick}: BoxStep1Props){
-    const currentValue = sessionStorage && sessionStorage.getItem("dachform");
+export default function BoxStep1({title, children, onClick, selected}: BoxStep1Props){
     function handleClick(){
-        sessionStorage.setItem("dachform", title);
         onClick();
     }
     
@@ -24,7 +23,7 @@ export default function BoxStep1({title, children, onClick}: BoxStep1Props){
                 {children}
             </div>
             <div className={clsx("mt-8 md:mt-10 text-lg font-bold h-32 w-full group-hover:bg-dark-blue group-hover:text-white rounded-b-xl flex md:justify-center group-hover:pt-8 transition-all duration-600 p-3",
-                currentValue === title ? "bg-dark-blue text-white pt-8" : ""
+                selected === title ? "bg-dark-blue text-white pt-8" : ""
             )}>
                 {title}
             </div>

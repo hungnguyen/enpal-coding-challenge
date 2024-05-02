@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image";
-import BoxStep1 from "./components/BoxStep1";
 import Slider from "./components/Slider";
 import Step1 from "./components/Step1";
 import Step3 from "./components/Step3";

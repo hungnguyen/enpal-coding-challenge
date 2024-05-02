@@ -7,12 +7,11 @@ interface BoxStep2Props{
     title: string;
     children: React.ReactNode
     onClick: () => void
+    selected: string | null
 }
 
-export default function BoxStep2({title, children, onClick}: BoxStep2Props){
-    const currentValue = sessionStorage && sessionStorage.getItem("dachform");
+export default function BoxStep2({title, children, onClick, selected}: BoxStep2Props){
     function handleClick(){
-        sessionStorage.setItem("dachfenster", title);
         onClick();
     }
     
@@ -24,7 +23,7 @@ export default function BoxStep2({title, children, onClick}: BoxStep2Props){
                     {children}
                 </div>
                 <div className={clsx("mt-10 h-32 w-full text-lg font-bold group-hover:bg-dark-blue group-hover:text-white rounded-b-xl flex md:justify-center group-hover:pt-8 transition-all duration-600 p-3",
-                    currentValue === title ? "bg-dark-blue text-white pt-8" : ""
+                    selected === title ? "bg-dark-blue text-white pt-8" : ""
                 )}>
                     {title}
                 </div>

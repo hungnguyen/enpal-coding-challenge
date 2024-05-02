@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BoxStep2 from "./BoxStep2";
 
 interface Step2Props{
@@ -5,6 +6,12 @@ interface Step2Props{
 }
 
 export default function Step2({onClick}: Step2Props){
+    const [selectedValue, setSelectedValue] = useState<string | null>("");
+    function handleClick(value: string){
+        setSelectedValue(value);
+        sessionStorage.setItem("dachform", value);
+        onClick();
+    }
     return(
         <>
             <div className="pl-3 pr-3">
@@ -16,7 +23,7 @@ export default function Step2({onClick}: Step2Props){
                 </div>
             </div>
             <div className="flex flex-col md:flex-row mt-8 gap-y-3 md:gap-8">
-                <BoxStep2 title="Ja" onClick={onClick}>
+                <BoxStep2 title="Ja" onClick={()=>handleClick("Ja")} selected={selectedValue}>
                     <svg width="120" height="109" viewBox="0 0 120 109" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_1_266)">
                     <g clipPath="url(#clip1_1_266)">
@@ -48,7 +55,7 @@ export default function Step2({onClick}: Step2Props){
 
                 </BoxStep2>
 
-                <BoxStep2 title="Nein" onClick={onClick}>
+                <BoxStep2 title="Nein" onClick={()=>handleClick("Nein")} selected={selectedValue}>
                     <svg width="120" height="109" viewBox="0 0 120 109" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_1_288)">
                     <g clipPath="url(#clip1_1_288)">
@@ -77,7 +84,7 @@ export default function Step2({onClick}: Step2Props){
 
                 </BoxStep2>
 
-                <BoxStep2 title="Weiß nicht" onClick={onClick}>
+                <BoxStep2 title="Weiß nicht" onClick={()=>handleClick("Weiß nicht")} selected={selectedValue}>
                     <svg width="121" height="109" viewBox="0 0 121 109" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_1_88)">
                         <path d="M54.697 65.016C53.682 65.016 52.873 64.654 52.291 63.939C51.721 63.237 51.488 62.387 51.6 61.412C51.829 59.39 52.412 57.54 53.334 55.915C54.249 54.299 55.785 52.537 57.897 50.678C59.926 48.854 61.487 47.089 62.532 45.437C63.553 43.826 64.069 42.055 64.069 40.173C64.069 37.669 63.242 35.645 61.54 33.988C59.856 32.35 57.504 31.52 54.548 31.52C52.449 31.52 50.716 31.929 49.397 32.735C48.058 33.552 46.938 34.624 46.068 35.921C45.619 36.606 45.006 37.081 44.25 37.33C43.904 37.444 43.556 37.501 43.215 37.501C42.806 37.501 42.398 37.418 42.004 37.255C41.115 36.876 40.577 36.205 40.4 35.258C40.231 34.352 40.389 33.529 40.869 32.814C42.337 30.635 44.221 28.872 46.47 27.573C48.729 26.27 51.445 25.609 54.542 25.609C59.545 25.609 63.461 27.05 66.182 29.893C68.897 32.73 70.273 36.143 70.273 40.038C70.273 42.471 69.734 44.75 68.669 46.812C67.615 48.853 65.994 50.901 63.85 52.899C61.719 54.864 60.246 56.491 59.47 57.734C58.713 58.948 58.258 60.329 58.117 61.836C58.004 62.742 57.628 63.498 56.996 64.098C56.353 64.707 55.581 65.016 54.697 65.016Z" fill="#F1F1F2"/>
