@@ -10,7 +10,7 @@ interface BoxStep2Props{
 }
 
 export default function BoxStep2({title, children, onClick}: BoxStep2Props){
-    const currentValue = sessionStorage.getItem("dachform");
+    const currentValue = sessionStorage && sessionStorage.getItem("dachform");
     function handleClick(){
         sessionStorage.setItem("dachfenster", title);
         onClick();
