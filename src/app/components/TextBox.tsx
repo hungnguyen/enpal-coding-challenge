@@ -34,7 +34,16 @@ export default function TextBox({
         {label}
       </label>
       {error && (
-        <span className="ml-3 text-red-500">This field is required</span>
+        <>
+          {error.type === 'required' && (
+            <span className="ml-3 text-red-500">
+              Dieses Feld ist erforderlich
+            </span>
+          )}
+          {error.type === 'pattern' && (
+            <span className="ml-3 text-red-500">Das Format ist ungültig</span>
+          )}
+        </>
       )}
       <input
         id={name}
